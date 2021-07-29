@@ -13,8 +13,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme:
-          ThemeData(primaryColor: kPrimaryColor, indicatorColor: Colors.white),
+      theme: ThemeData(primaryColor: kPrimaryColor),
       debugShowCheckedModeBanner: false,
       initialRoute: menu_route,
       routes: {
