@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tic_tac_toe/constants/routes.dart';
-import 'package:tic_tac_toe/screens/game/game.dart';
+import 'package:tic_tac_toe/screens/with-ai/game/game.dart';
 import 'package:tic_tac_toe/screens/menu/menu.dart';
+import 'package:tic_tac_toe/screens/with-ai/pick-side/pick-side.dart';
 import 'package:tic_tac_toe/screens/result/result.dart';
 import 'constants/colors.dart';
 
@@ -12,12 +14,13 @@ void main() {
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData(primaryColor: kPrimaryColor),
       debugShowCheckedModeBanner: false,
       initialRoute: menu_route,
       routes: {
         menu_route: (context) => MenuScreen(),
+        pickside_route: (context) => PickSideScreen(),
         game_route: (context) => GameScreen(),
         result_route: (context) => ResultScreen()
       },

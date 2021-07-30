@@ -8,5 +8,6 @@ class UserChooseController extends GetxController {
   updateUserChoose({PlayMode newPlayMode, UserSide newUserSide}) {
     playMode = newPlayMode != null ? newPlayMode : playMode;
     userSide = newUserSide != null ? newUserSide : userSide;
+    update();
   }
 }

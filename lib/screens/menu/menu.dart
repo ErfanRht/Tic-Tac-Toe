@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:tic_tac_toe/constants/colors.dart';
+import 'package:tic_tac_toe/constants/routes.dart';
 import 'package:tic_tac_toe/constants/types.dart';
 import 'package:tic_tac_toe/controllers/user-choose-controller.dart';
 import 'package:tic_tac_toe/models/statusbar-color.dart';
-import 'package:tic_tac_toe/screens/choose-side/choose-side.dart';
 import 'package:tic_tac_toe/widgets/button.dart';
 import 'package:tic_tac_toe/widgets/icon-button.dart';
 
@@ -47,6 +46,7 @@ class MenuScreen extends StatelessWidget {
                 ifClick: () {
                   Get.find<UserChooseController>()
                       .updateUserChoose(newPlayMode: PlayMode.AI);
+                  Get.toNamed(pickside_route);
                 }),
             SizedBox(
               height: 30,
@@ -58,6 +58,7 @@ class MenuScreen extends StatelessWidget {
                 ifClick: () {
                   Get.find<UserChooseController>()
                       .updateUserChoose(newPlayMode: PlayMode.Friend);
+                  Get.toNamed(pickside_route);
                 }),
             SizedBox(
               height: 100,

@@ -17,6 +17,7 @@ dependencies:
   get: ^4.3.0
   google_fonts: ^2.1.0
   flutter_spinkit: "^4.1.2"
+  vector_math: ^2.1.0
 
 dev_dependencies:
   flutter_test:
