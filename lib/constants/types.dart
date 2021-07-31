@@ -5,3 +5,4 @@ enum UserMode { USER, FRIEND }
 enum LineMode { VERTICAL, HORIZONTAL }
 enum BoxValue { EMPTY, CROSS, ZERO }
 enum Turn { CROSS, ZERO }
+enum IntoBox { TABLE, RESULT }

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tic_tac_toe/constants/colors.dart';
 import 'package:tic_tac_toe/controllers/user-choose-controller.dart';
+import 'package:tic_tac_toe/screens/with-friend/game/game-box/game-box.dart';
 import 'package:tic_tac_toe/screens/with-friend/game/scoreboard.dart';
-import 'package:tic_tac_toe/screens/with-friend/set-names/game-table.dart';
+import 'package:tic_tac_toe/screens/with-friend/game/game-box/game-table.dart';
 import 'package:tic_tac_toe/widgets/icon-button.dart';
 
 class GameFriendScreen extends StatelessWidget {
@@ -20,7 +21,7 @@ class GameFriendScreen extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            GameTable(),
+            GameBox(),
             SizedBox(
               height: 75,
             ),
