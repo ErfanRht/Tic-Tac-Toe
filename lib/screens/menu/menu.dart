@@ -9,23 +9,58 @@ import 'package:tic_tac_toe/models/statusbar-color.dart';
 import 'package:tic_tac_toe/widgets/button.dart';
 import 'package:tic_tac_toe/widgets/icon-button.dart';
 
-class MenuScreen extends StatelessWidget {
+class MenuScreen extends StatefulWidget {
+  @override
+  _MenuScreenState createState() => _MenuScreenState();
+}
+
+class _MenuScreenState extends State<MenuScreen> {
   final UserChooseController globalController = Get.put(UserChooseController());
+
+  bool showImage = false;
+  bool showText = false;
+
+  @override
+  void initState() {
+    super.initState();
+    headerManage();
+  }
+
   @override
   Widget build(BuildContext context) {
     StatusBarColor();
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kBackgroundColor,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(
-                child: Image.asset(
-              'assets/images/logo.png',
-              color: kPrimaryColor,
-              height: 200,
-            )),
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                AnimatedOpacity(
+                  opacity: showText ? 1 : 0,
+                  duration: Duration(milliseconds: 500),
+                  child: Text(
+                    'Welcome',
+                    style: GoogleFonts.workSans(
+                        fontSize: 55,
+                        fontWeight: FontWeight.w800,
+                        color: kPrimaryColor),
+                  ),
+                ),
+                AnimatedOpacity(
+                  opacity: showImage ? 1 : 0,
+                  duration: Duration(milliseconds: 500),
+                  child: Center(
+                      child: Image.asset(
+                    'assets/images/logo.png',
+                    color: kPrimaryColor,
+                    height: 200,
+                  )),
+                ),
+              ],
+            ),
             SizedBox(
               height: 100,
             ),
@@ -58,7 +93,7 @@ class MenuScreen extends StatelessWidget {
                 ifClick: () {
                   Get.find<UserChooseController>()
                       .updateUserChoose(newPlayMode: PlayMode.Friend);
-                  Get.toNamed(pickside_route);
+                  Get.toNamed(setnames_route);
                 }),
             SizedBox(
               height: 100,
@@ -68,5 +103,20 @@ class MenuScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  headerManage() async {
+    await Future.delayed(Duration(milliseconds: 750));
+    setState(() {
+      showText = true;
+    });
+    await Future.delayed(Duration(milliseconds: 2500));
+    setState(() {
+      showText = false;
+    });
+    await Future.delayed(Duration(milliseconds: 1000));
+    setState(() {
+      showImage = true;
+    });
   }
 }

@@ -21,7 +21,7 @@ class PickSideWidget extends StatelessWidget {
                 highlightColor: Colors.transparent,
                 splashColor: Colors.transparent,
                 onTap: () {
-                  updatePick(0);
+                  updatePick(UserSide.CROSS);
                 },
                 child: Container(
                     height: 300,
@@ -58,7 +58,7 @@ class PickSideWidget extends StatelessWidget {
                 highlightColor: Colors.transparent,
                 splashColor: Colors.transparent,
                 onTap: () {
-                  updatePick(1);
+                  updatePick(UserSide.ZERO);
                 },
                 child: Container(
                     height: 300,
@@ -98,13 +98,7 @@ class PickSideWidget extends StatelessWidget {
     });
   }
 
-  updatePick(int val) {
-    if (val == 0) {
-      Get.find<UserChooseController>()
-          .updateUserChoose(newUserSide: UserSide.CROSS);
-    } else if (val == 1) {
-      Get.find<UserChooseController>()
-          .updateUserChoose(newUserSide: UserSide.ZERO);
-    }
+  updatePick(UserSide userSide) {
+    Get.find<UserChooseController>().updateUserChoose(newUserSide: userSide);
   }
 }

@@ -22,10 +22,10 @@ class _ZeroIconState extends State<ZeroIcon> {
     iconSize = widget.iconSize;
 
     if (iconSize == IconSize.MINIMAL) {
-      bigCircleHeight = 0;
-      bigCirclewidth = 0;
-      smallCircleHeight = 0;
-      smallCircleWidth = 0;
+      bigCircleHeight = 50;
+      bigCirclewidth = 50;
+      smallCircleHeight = 17.5;
+      smallCircleWidth = 17.5;
     } else if (iconSize == IconSize.MEDIUM) {
       bigCircleHeight = 0;
       bigCirclewidth = 0;
@@ -54,8 +54,8 @@ class _ZeroIconState extends State<ZeroIcon> {
             boxShadow: [
               BoxShadow(
                 color: kZeroIconColor.withOpacity(0.5),
-                spreadRadius: 4,
-                blurRadius: 7,
+                spreadRadius: iconSize == IconSize.MAXIMAL ? 4 : 2,
+                blurRadius: iconSize == IconSize.MAXIMAL ? 7 : 5,
               ),
             ],
           ),
@@ -70,8 +70,8 @@ class _ZeroIconState extends State<ZeroIcon> {
             boxShadow: [
               BoxShadow(
                 color: Colors.white.withOpacity(0.5),
-                spreadRadius: 4,
-                blurRadius: 7,
+                spreadRadius: iconSize == IconSize.MAXIMAL ? 4 : 2,
+                blurRadius: iconSize == IconSize.MAXIMAL ? 7 : 5,
               ),
             ],
           ),

@@ -21,8 +21,8 @@ class _CrossIconState extends State<CrossIcon> {
     iconSize = widget.iconSize;
 
     if (iconSize == IconSize.MINIMAL) {
-      height = 0;
-      width = 0;
+      height = 55;
+      width = 15;
     } else if (iconSize == IconSize.MEDIUM) {
       height = 0;
       width = 0;
@@ -47,8 +47,8 @@ class _CrossIconState extends State<CrossIcon> {
                 boxShadow: [
                   BoxShadow(
                     color: kPrimaryColor.withOpacity(0.5),
-                    spreadRadius: 4,
-                    blurRadius: 7,
+                    spreadRadius: iconSize == IconSize.MAXIMAL ? 4 : 2,
+                    blurRadius: iconSize == IconSize.MAXIMAL ? 7 : 5,
                   ),
                 ],
               ),
@@ -64,8 +64,8 @@ class _CrossIconState extends State<CrossIcon> {
                   boxShadow: [
                     BoxShadow(
                       color: kPrimaryColor.withOpacity(0.5),
-                      spreadRadius: 4,
-                      blurRadius: 7,
+                      spreadRadius: iconSize == IconSize.MAXIMAL ? 4 : 2,
+                      blurRadius: iconSize == IconSize.MAXIMAL ? 7 : 5,
                     )
                   ]),
             ))
