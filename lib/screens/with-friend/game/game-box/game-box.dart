@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tic_tac_toe/constants/types.dart';
+import 'package:tic_tac_toe/screens/with-friend/game/game-box/result-box.dart';
 import 'package:tic_tac_toe/screens/with-friend/game/game-controller.dart';
 import 'package:tic_tac_toe/screens/with-friend/game/game-box/game-table.dart';
 
@@ -35,7 +36,7 @@ class GameBox extends StatelessWidget {
         return GameTable();
         break;
       case (IntoBox.RESULT):
-        return null;
+        return ResultBox();
         break;
     }
   }

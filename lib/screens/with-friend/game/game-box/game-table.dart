@@ -69,13 +69,20 @@ class _GameTableState extends State<GameTable> {
   }
 
   setWinner(BoxValue value) async {
-    UserMode winner;
+    WinnerMode winner;
     if (value == BoxValue.CROSS) {
-      winner = UserMode.USER;
+      await Future.delayed(Duration(milliseconds: 1000));
+      winner = WinnerMode.USER;
+      Get.find<GameController>().addUserWins();
+    } else if (value == BoxValue.ZERO) {
+      await Future.delayed(Duration(milliseconds: 1000));
+      winner = WinnerMode.FRIEND;
+      Get.find<GameController>().addFriendWins();
     } else {
-      winner = UserMode.FRIEND;
+      await Future.delayed(Duration(milliseconds: 1000));
+      winner = WinnerMode.TIE;
+      Get.find<GameController>().addTie()();
     }
-    await Future.delayed(Duration(milliseconds: 1000));
     Get.find<GameController>()
         .updateGame(newIntoBox: IntoBox.RESULT, newwinner: winner);
   }
@@ -88,14 +95,11 @@ class _GameTableState extends State<GameTable> {
     } else if ((gameState[3] != BoxValue.EMPTY) &&
         (gameState[3] == gameState[4]) &&
         (gameState[4] == gameState[5])) {
-      setState(() {
-        // this.message = '${this.gameState[3]} wins';
-        // this.Delay();
-      });
+      setWinner(gameState[3]);
     } else if ((gameState[6] != BoxValue.EMPTY) &&
         (gameState[6] == gameState[7]) &&
         (gameState[7] == gameState[8])) {
-      setWinner(gameState[0]);
+      setWinner(gameState[6]);
     } else if ((gameState[0] != BoxValue.EMPTY) &&
         (gameState[0] == gameState[3]) &&
         (gameState[3] == gameState[6])) {
@@ -103,11 +107,11 @@ class _GameTableState extends State<GameTable> {
     } else if ((gameState[1] != BoxValue.EMPTY) &&
         (gameState[1] == gameState[4]) &&
         (gameState[4] == gameState[7])) {
-      setWinner(gameState[0]);
+      setWinner(gameState[1]);
     } else if ((gameState[2] != BoxValue.EMPTY) &&
         (gameState[2] == gameState[5]) &&
         (gameState[5] == gameState[8])) {
-      setWinner(gameState[0]);
+      setWinner(gameState[2]);
     } else if ((gameState[0] != BoxValue.EMPTY) &&
         (gameState[0] == gameState[4]) &&
         (gameState[4] == gameState[8])) {
@@ -115,12 +119,9 @@ class _GameTableState extends State<GameTable> {
     } else if ((gameState[2] != BoxValue.EMPTY) &&
         (gameState[2] == gameState[4]) &&
         (gameState[4] == gameState[6])) {
-      setWinner(gameState[0]);
+      setWinner(gameState[2]);
     } else if (!gameState.contains(BoxValue.EMPTY)) {
-      setState(() {
-        // this.message = 'Game Draw';
-        // this.Delay();
-      });
+      setWinner(BoxValue.EMPTY);
     }
   }
 

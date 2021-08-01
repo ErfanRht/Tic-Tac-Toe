@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tic_tac_toe/constants/colors.dart';
 import 'package:tic_tac_toe/constants/routes.dart';
 import 'package:tic_tac_toe/controllers/user-choose-controller.dart';
+import 'package:tic_tac_toe/screens/with-friend/game/game-controller.dart';
 import 'package:tic_tac_toe/screens/with-friend/set-names/set-controller.dart';
 import 'package:tic_tac_toe/screens/with-friend/set-names/set.dart';
 import 'package:tic_tac_toe/widgets/button.dart';
@@ -54,6 +55,9 @@ class SetNamesScreen extends StatelessWidget {
         .updateUserChoose(newError1Status: false, newError2Status: false);
     Get.find<UserChooseController>()
         .updateUserChoose(newUserName: '', newFriendName: '');
+    try {
+      Get.find<GameController>().reset();
+    } catch (e) {}
     return true;
   }
 }
