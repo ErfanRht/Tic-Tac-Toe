@@ -12,11 +12,13 @@ class ResultBox extends StatefulWidget {
 
 class _ResultBoxState extends State<ResultBox> {
   bool showText;
+  EdgeInsets textPadding;
 
   @override
   void initState() {
     super.initState();
     showText = false;
+    textPadding = EdgeInsets.only(top: 50);
     manageAnimation();
   }
 
@@ -30,15 +32,21 @@ class _ResultBoxState extends State<ResultBox> {
             Center(
               child: AnimatedOpacity(
                 opacity: showText ? 1 : 0,
-                duration: Duration(milliseconds: 500),
-                child: Text(
-                  state.lastWinnerName,
-                  style: GoogleFonts.workSans(
-                      fontSize: 35,
-                      fontWeight: FontWeight.w800,
-                      color: state.lastWinner == WinnerMode.FRIEND
-                          ? kZeroIconColor
-                          : kPrimaryColor),
+                duration: Duration(milliseconds: 750),
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 750),
+                  padding: textPadding,
+                  child: Text(
+                    state.lastWinnerName,
+                    style: GoogleFonts.workSans(
+                        fontSize: 35,
+                        fontWeight: FontWeight.w800,
+                        color: state.lastWinner == WinnerMode.FRIEND
+                            ? kZeroIconColor
+                            : state.lastWinner == WinnerMode.USER
+                                ? kPrimaryColor
+                                : Colors.grey),
+                  ),
                 ),
               ),
             ),
@@ -49,9 +57,18 @@ class _ResultBoxState extends State<ResultBox> {
   }
 
   manageAnimation() async {
-    await Future.delayed(Duration(milliseconds: 250));
+    await Future.delayed(Duration(milliseconds: 350));
     setState(() {
       showText = true;
+      textPadding = EdgeInsets.zero;
     });
+    await Future.delayed(Duration(milliseconds: 2250));
+    setState(() {
+      showText = false;
+      textPadding = EdgeInsets.only(top: 50);
+    });
+    await Future.delayed(Duration(milliseconds: 750));
+    Get.find<GameController>()
+        .updateGame(newBoxStatus: IntoBox.TABLE, newIntoBox: IntoBox.TABLE);
   }
 }

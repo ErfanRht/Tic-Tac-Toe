@@ -5,14 +5,16 @@ import 'package:tic_tac_toe/controllers/user-choose-controller.dart';
 
 class GameController extends GetxController {
   IntoBox intoBox = IntoBox.TABLE;
+  IntoBox boxStatus = IntoBox.TABLE;
   WinnerMode lastWinner = WinnerMode.NONE;
   String lastWinnerName = '';
   int userWins = 0;
   int friendWins = 0;
   int tie = 0;
 
-  updateGame({IntoBox newIntoBox, WinnerMode newwinner}) {
+  updateGame({IntoBox newIntoBox, IntoBox newBoxStatus, WinnerMode newwinner}) {
     intoBox = newIntoBox != null ? newIntoBox : intoBox;
+    boxStatus = newBoxStatus != null ? newBoxStatus : boxStatus;
     lastWinner = newwinner != null ? newwinner : lastWinner;
 
     if (lastWinner == WinnerMode.USER) {
@@ -20,7 +22,7 @@ class GameController extends GetxController {
     } else if (lastWinner == WinnerMode.FRIEND) {
       lastWinnerName = "${Get.find<UserChooseController>().friendName} won";
     } else {
-      lastWinnerName = "Tie";
+      lastWinnerName = "Draw";
     }
     update();
   }

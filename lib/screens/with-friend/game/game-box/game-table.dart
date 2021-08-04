@@ -34,54 +34,61 @@ class _GameTableState extends State<GameTable> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return GetBuilder<GameController>(
+      builder: (state) {
+        return Stack(
           children: [
-            SizedBox(),
-            Line(LineMode.VERTICAL),
-            Line(LineMode.VERTICAL),
-            SizedBox()
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(),
+                Line(LineMode.VERTICAL),
+                Line(LineMode.VERTICAL),
+                SizedBox()
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(),
+                Line(LineMode.HORIZONTAL),
+                Line(LineMode.HORIZONTAL),
+                SizedBox()
+              ],
+            ),
+            GridView.count(
+              crossAxisCount: 3,
+              children: List.generate(gameState.length, (index) {
+                return GestureDetector(
+                    onTap: () {
+                      if (state.boxStatus == IntoBox.TABLE) {
+                        playGame(index);
+                      }
+                    },
+                    child: intoBox(gameState[index]));
+              }),
+            ),
           ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(),
-            Line(LineMode.HORIZONTAL),
-            Line(LineMode.HORIZONTAL),
-            SizedBox()
-          ],
-        ),
-        GridView.count(
-          crossAxisCount: 3,
-          children: List.generate(gameState.length, (index) {
-            return GestureDetector(
-                onTap: () {
-                  playGame(index);
-                },
-                child: intoBox(gameState[index]));
-          }),
-        ),
-      ],
+        );
+      },
     );
   }
 
   setWinner(BoxValue value) async {
     WinnerMode winner;
+    Get.find<GameController>().updateGame(newBoxStatus: IntoBox.RESULT);
     if (value == BoxValue.CROSS) {
-      await Future.delayed(Duration(milliseconds: 1000));
+      await Future.delayed(Duration(milliseconds: 1500));
       winner = WinnerMode.USER;
       Get.find<GameController>().addUserWins();
     } else if (value == BoxValue.ZERO) {
-      await Future.delayed(Duration(milliseconds: 1000));
+      await Future.delayed(Duration(milliseconds: 1500));
       winner = WinnerMode.FRIEND;
       Get.find<GameController>().addFriendWins();
     } else {
-      await Future.delayed(Duration(milliseconds: 1000));
+      await Future.delayed(Duration(milliseconds: 1500));
       winner = WinnerMode.TIE;
-      Get.find<GameController>().addTie()();
+      Get.find<GameController>().addTie();
     }
     Get.find<GameController>()
         .updateGame(newIntoBox: IntoBox.RESULT, newwinner: winner);
@@ -121,6 +128,7 @@ class _GameTableState extends State<GameTable> {
         (gameState[4] == gameState[6])) {
       setWinner(gameState[2]);
     } else if (!gameState.contains(BoxValue.EMPTY)) {
+      print('draw');
       setWinner(BoxValue.EMPTY);
     }
   }

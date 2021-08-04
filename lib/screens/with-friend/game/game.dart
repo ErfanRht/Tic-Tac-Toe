@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tic_tac_toe/constants/colors.dart';
+import 'package:tic_tac_toe/constants/routes.dart';
 import 'package:tic_tac_toe/constants/types.dart';
 import 'package:tic_tac_toe/controllers/user-choose-controller.dart';
 import 'package:tic_tac_toe/screens/with-friend/game/game-box/game-box.dart';
@@ -37,8 +39,8 @@ class GameFriendScreen extends StatelessWidget {
   }
 
   Future<bool> closePage() async {
-    Get.find<GameController>()
-        .updateGame(newIntoBox: IntoBox.TABLE, newwinner: WinnerMode.NONE);
+    Get.find<GameController>().reset();
+    Get.offAndToNamed(menu_route);
     return true;
   }
 }

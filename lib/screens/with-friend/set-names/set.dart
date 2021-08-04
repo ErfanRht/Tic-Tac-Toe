@@ -35,6 +35,7 @@ class SetNamesWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 5),
                         child: TextField(
+                          textAlign: TextAlign.center,
                           maxLength: 25,
                           style: GoogleFonts.workSans(
                               color: kPrimaryColor,
@@ -77,6 +78,7 @@ class SetNamesWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 5, right: 10),
                       child: TextField(
+                        textAlign: TextAlign.center,
                         maxLength: 25,
                         style: GoogleFonts.workSans(
                             color: kZeroIconColor, fontWeight: FontWeight.w700),

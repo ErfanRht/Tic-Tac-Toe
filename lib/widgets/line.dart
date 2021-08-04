@@ -24,7 +24,7 @@ class _LineState extends State<Line> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 1500),
+      duration: Duration(milliseconds: 1250),
       width: width,
       height: height,
       decoration: BoxDecoration(
@@ -35,7 +35,7 @@ class _LineState extends State<Line> {
   }
 
   animationManage() async {
-    await Future.delayed(Duration(milliseconds: 750));
+    await Future.delayed(Duration(milliseconds: 250));
     setState(() {
       height = widget.lineMode == LineMode.VERTICAL
           ? MediaQuery.of(context).size.width - 40

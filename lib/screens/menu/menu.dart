@@ -6,26 +6,13 @@ import 'package:tic_tac_toe/constants/routes.dart';
 import 'package:tic_tac_toe/constants/types.dart';
 import 'package:tic_tac_toe/controllers/user-choose-controller.dart';
 import 'package:tic_tac_toe/models/statusbar-color.dart';
+import 'package:tic_tac_toe/screens/menu/header.dart';
 import 'package:tic_tac_toe/widgets/button.dart';
 import 'package:tic_tac_toe/widgets/icon-button.dart';
 
-class MenuScreen extends StatefulWidget {
-  @override
-  _MenuScreenState createState() => _MenuScreenState();
-}
-
-class _MenuScreenState extends State<MenuScreen> {
-  final UserChooseController globalController = Get.put(UserChooseController());
-
-  bool showImage = false;
-  bool showText = false;
-
-  @override
-  void initState() {
-    super.initState();
-    headerManage();
-  }
-
+class MenuScreen extends StatelessWidget {
+  final UserChooseController userChooseController =
+      Get.put(UserChooseController());
   @override
   Widget build(BuildContext context) {
     StatusBarColor();
@@ -35,32 +22,7 @@ class _MenuScreenState extends State<MenuScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                AnimatedOpacity(
-                  opacity: showText ? 1 : 0,
-                  duration: Duration(milliseconds: 500),
-                  child: Text(
-                    'Welcome',
-                    style: GoogleFonts.workSans(
-                        fontSize: 55,
-                        fontWeight: FontWeight.w800,
-                        color: kPrimaryColor),
-                  ),
-                ),
-                AnimatedOpacity(
-                  opacity: showImage ? 1 : 0,
-                  duration: Duration(milliseconds: 500),
-                  child: Center(
-                      child: Image.asset(
-                    'assets/images/logo.png',
-                    color: kPrimaryColor,
-                    height: 200,
-                  )),
-                ),
-              ],
-            ),
+            MenuHeader(),
             SizedBox(
               height: 100,
             ),
@@ -103,20 +65,5 @@ class _MenuScreenState extends State<MenuScreen> {
         ),
       ),
     );
-  }
-
-  headerManage() async {
-    await Future.delayed(Duration(milliseconds: 750));
-    setState(() {
-      showText = true;
-    });
-    await Future.delayed(Duration(milliseconds: 2500));
-    setState(() {
-      showText = false;
-    });
-    await Future.delayed(Duration(milliseconds: 1000));
-    setState(() {
-      showImage = true;
-    });
   }
 }
