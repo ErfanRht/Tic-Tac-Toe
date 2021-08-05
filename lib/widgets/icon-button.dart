@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tic_tac_toe/constants/colors.dart';
 import 'gradient-icon.dart';
 
 class PrimaryIconButton extends StatefulWidget {
   final dynamic icon;
-  PrimaryIconButton({@required this.icon});
+  final dynamic onTap;
+  PrimaryIconButton({@required this.icon, @required this.onTap});
   @override
   _PrimaryIconButtonState createState() => _PrimaryIconButtonState();
 }
@@ -21,7 +23,7 @@ class _PrimaryIconButtonState extends State<PrimaryIconButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () {},
+        onTap: widget.onTap,
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
         child: Container(

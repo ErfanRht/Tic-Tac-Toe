@@ -29,6 +29,3 @@ flutter:
   assets:
     # logo
      - assets/images/logo.png
-    # icons
-     - assets/icons/cross.png
-     - assets/icons/zero.png

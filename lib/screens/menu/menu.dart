@@ -41,9 +41,25 @@ class MenuScreen extends StatelessWidget {
                 buttonColor: kPrimaryColor,
                 textColor: Colors.white,
                 ifClick: () {
-                  Get.find<UserChooseController>()
-                      .updateUserChoose(newPlayMode: PlayMode.AI);
-                  Get.toNamed(pickside_route);
+                  // Get.find<UserChooseController>()
+                  //     .updateUserChoose(newPlayMode: PlayMode.AI);
+                  // Get.toNamed(pickside_route);
+                  Get.defaultDialog(
+                      title: "",
+                      content: Column(
+                        children: [
+                          Text(
+                            "Coming soon...",
+                            style: GoogleFonts.workSans(
+                                fontSize: 22.5,
+                                fontWeight: FontWeight.w700,
+                                color: kPrimaryColor),
+                          ),
+                          SizedBox(
+                            height: 25,
+                          )
+                        ],
+                      ));
                 }),
             SizedBox(
               height: 30,
@@ -60,7 +76,12 @@ class MenuScreen extends StatelessWidget {
             SizedBox(
               height: 100,
             ),
-            PrimaryIconButton(icon: Icons.settings)
+            PrimaryIconButton(
+              icon: Icons.settings,
+              onTap: () {
+                Get.toNamed(settings_route);
+              },
+            )
           ],
         ),
       ),

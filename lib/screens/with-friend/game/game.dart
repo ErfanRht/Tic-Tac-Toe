@@ -30,7 +30,13 @@ class GameFriendScreen extends StatelessWidget {
               SizedBox(
                 height: 75,
               ),
-              Center(child: PrimaryIconButton(icon: Icons.settings))
+              Center(
+                  child: PrimaryIconButton(
+                icon: Icons.settings,
+                onTap: () {
+                  Get.toNamed(settings_route);
+                },
+              ))
             ],
           ),
         ),
